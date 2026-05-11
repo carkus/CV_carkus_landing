@@ -1,0 +1,68 @@
+@implements IDisposable
+@inject IConfiguration Config
+
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Senior Software Engineer</div>
+            <h1 class="hero-name">Mark<br><em>Scicluna</em></h1>
+            <p class="hero-title">Cross-Platform · Spatial Computing · AI Systems</p>
+            <p class="hero-desc">Building production-grade experiences across mobile, spatial, and web — from Flutter and SwiftUI to visionOS and Blazor. Based in Melbourne. 10+ years shipping real products.</p>
+            <div class="hero-ctas">
+                <a href="#work" class="btn-primary">View Work →</a>
+                <a href="@Config["AppUrl"]" class="btn-ghost" target="_blank" rel="noopener noreferrer">Open Site ↗</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="platform-card">
+                <img class="platform-img" src="@_current.Img" alt="@_current.Alt"
+                     style="opacity: @(_visible ? "0.55" : "0")" />
+                <div class="platform-overlay"></div>
+                <div class="platform-label" style="opacity: @(_visible ? "1" : "0")">
+                    <span>Featured Platform</span>
+                    <p>@_current.Title</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private record Platform(string Title, string Img, string Alt);
+
+    private static readonly Platform[] _platforms =
+    [
+        new("ZOME — Cross-platform product",
+            "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=600&q=80",
+            "ZOME platform"),
+        new("Chatty Prayers",
+            "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+            "Chatty Prayers"),
+    ];
+
+    private int   _idx     = 0;
+    private bool  _visible = true;
+    private Timer? _timer;
+
+    private Platform _current => _platforms[_idx];
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            _timer = new Timer(_ => InvokeAsync(Advance), null, 8000, 8000);
+    }
+
+    private async Task Advance()
+    {
+        _visible = false;
+        StateHasChanged();
+        await Task.Delay(700);
+        _idx = (_idx + 1) % _platforms.Length;
+        _visible = true;
+        StateHasChanged();
+    }
+
+    public void Dispose() => _timer?.Dispose();
+}

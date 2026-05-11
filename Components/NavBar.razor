@@ -1,0 +1,34 @@
+@inject IConfiguration Config
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">carkus.com</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="@Config["AppUrl"]" target="_blank" rel="noopener noreferrer" class="nav-app-link">Open Site ↗</a></li>
+        </ul>
+        <button class="nav-hamburger @(_open ? "open" : "")" @onclick="Toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-drawer @(_open ? "open" : "")">
+        <a href="#about"     @onclick="Close">About</a>
+        <a href="#skills"    @onclick="Close">Skills</a>
+        <a href="#work"      @onclick="Close">Work</a>
+        <a href="#expertise" @onclick="Close">Expertise</a>
+        <a href="#timeline"  @onclick="Close">Timeline</a>
+        <a href="#contact"   @onclick="Close">Contact</a>
+        <a href="@Config["AppUrl"]" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);">Open Site ↗</a>
+    </div>
+</nav>
+
+@code {
+    private bool _open;
+    private void Toggle() => _open = !_open;
+    private void Close()  => _open = false;
+}

@@ -1,0 +1,22 @@
+@page "/"
+@inject IJSRuntime JS
+
+<PageTitle>Mark Scicluna — carkus.com</PageTitle>
+
+<NavBar />
+<HeroSection />
+<AboutSection />
+<SkillsSection />
+<WorkSection />
+<ExpertiseSection />
+<TimelineSection />
+<ContactSection />
+<FooterSection />
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JS.InvokeVoidAsync("initScrollReveal");
+    }
+}

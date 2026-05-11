@@ -1,0 +1,68 @@
+<section id="skills">
+    <div class="section-inner">
+        <div class="section-eyebrow reveal">Skills</div>
+        <h2 class="section-heading reveal reveal-delay-1">The toolkit</h2>
+        <p class="section-sub reveal reveal-delay-2">Languages, frameworks, and platforms I work with day-to-day — and a few I reach for when the problem calls for it.</p>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;overflow:hidden;">
+        <div class="skills-track-wrapper">
+            <div class="skills-track">
+                @foreach (var s in Row1Doubled)
+                {
+                    <div class="skill-card">
+                        <div class="skill-card-icon">@s.Icon</div>
+                        <div class="skill-card-name">@s.Name</div>
+                        <div class="skill-card-cat">@s.Cat</div>
+                        <div class="skill-card-bar">
+                            <div class="skill-card-bar-fill" style="width:@(s.Pct)%"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="skills-track-wrapper" style="margin-top:1.5px;">
+            <div class="skills-track skills-track-b">
+                @foreach (var s in Row2Doubled)
+                {
+                    <div class="skill-card">
+                        <div class="skill-card-icon">@s.Icon</div>
+                        <div class="skill-card-name">@s.Name</div>
+                        <div class="skill-card-cat">@s.Cat</div>
+                        <div class="skill-card-bar">
+                            <div class="skill-card-bar-fill" style="width:@(s.Pct)%"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private record Skill(string Name, string Cat, string Icon, int Pct);
+
+    private static readonly Skill[] Row1 =
+    [
+        new("Flutter",        "Mobile",     "🐦", 95),
+        new("Swift / SwiftUI","iOS",        "🍎", 92),
+        new("Kotlin",         "Android",    "🤖", 80),
+        new("VisionOS",       "Spatial",    "🥽", 90),
+        new("C# / Blazor",    "Web",        "🔷", 95),
+        new("Git / CI",       "Tooling",    "🔧", 85),
+        new("Dart",           "Language",   "🎯", 94),
+    ];
+
+    private static readonly Skill[] Row2 =
+    [
+        new("React",          "Web",        "⚛️", 75),
+        new("TypeScript",     "Language",   "📘", 72),
+        new("ARKit",          "Spatial",    "📡", 76),
+        new("Python",         "Scripting",  "🐍", 74),
+        new("ASP.NET Core",   "Backend",    "⚙️", 70),
+        new("UIKit",          "iOS Legacy", "📱", 88),
+        new("Claude API",     "AI",         "🧠", 88),
+    ];
+
+    private static IEnumerable<Skill> Row1Doubled => Row1.Concat(Row1);
+    private static IEnumerable<Skill> Row2Doubled => Row2.Concat(Row2);
+}
