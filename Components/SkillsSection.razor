@@ -6,7 +6,7 @@
     <div class="section-inner">
         <div class="section-eyebrow reveal">Skills</div>
         <h2 class="section-heading reveal reveal-delay-1">The toolkit</h2>
-        <p class="section-sub reveal reveal-delay-2">Languages, frameworks, and platforms I work with day-to-day — and a few I reach for when the problem calls for it.</p>
+        <p class="section-sub reveal reveal-delay-2">Sorted by depth — high proficiency covers my daily drivers, extended stack what I reach for regularly, and other skills round out the rest.</p>
     </div>
     <div class="section-inner" style="padding-top:0;">
         <div class="skills-board" id="skillsBoard">
@@ -18,7 +18,16 @@
                     {
                         <div class="skill-row" style="--pct:@(s.Pct)%">
                             <div class="skill-row-identity">
-                                <div class="skill-row-icon">@s.Icon</div>
+                                <div class="skill-row-icon">
+                                    @if (s.Icon.StartsWith("devicon-"))
+                                    {
+                                        <i class="@s.Icon"></i>
+                                    }
+                                    else
+                                    {
+                                        <span>@s.Icon</span>
+                                    }
+                                </div>
                                 <div>
                                     <div class="skill-row-name">@s.Name</div>
                                     <div class="skill-row-cat">@s.Cat</div>
@@ -39,11 +48,14 @@
         </div>
         @if (_otherSkills.Length > 0)
         {
-            <div class="skills-other">
-                @foreach (var s in _otherSkills)
-                {
-                    <span class="skill-box etag">@s.Icon @s.Name</span>
-                }
+            <div class="skills-other-box">
+                <div class="skills-col-header">Other Skills</div>
+                <div class="skills-other">
+                    @foreach (var s in _otherSkills)
+                    {
+                        <span class="skill-box etag">@s.Name</span>
+                    }
+                </div>
             </div>
         }
     </div>
@@ -96,31 +108,30 @@
 
     private static readonly Skill[] FlatFallback =
     [
-        new("Flutter",             "Mobile",       "🐦",  95),
-        new("C#",                  "Language",     "🔷",  95),
-        new("Dart",                "Language",     "🎯",  94),
-        new("Swift / SwiftUI",     "iOS",          "🍎",  92),
-        new("visionOS",            "Spatial",      "🥽",  90),
-        new("Blazor",              "Web",          "🌐",  90),
-        new("UIKit",               "iOS",          "📐",  88),
-        new("Claude API",          "AI",           "🧠",  88),
-        new("Git / CI·CD",         "Tooling",      "🔀",  85),
-        new("RealityKit",          "Spatial",      "🔮",  82),
-        new("Kotlin",              "Android",      "🔶",  80),
-        new("Heuristic Search",    "AI Research",  "🔬",  80),
-        new("DDD",                 "Architecture", "🏛️",  78),
-        new("AI Planning",         "Research",     "🤖",  78),
-        new("ARKit",               "Spatial",      "🕶️",  76),
-        new("PDF Generation",      "Web",          "📄",  75),
-        new("React",               "Web",          "⚛️",  75),
-        new("Python",              "Scripting",    "🐍",  74),
-        new("Observable",          "Patterns",     "👁️",  72),
-        new("TypeScript",          "Language",     "📘",  72),
-        new("ASP.NET Core",        "Backend",      "⚙️",  70),
-        new("Jetpack Compose",     "Android",      "🎨",  70),
-        new("Gemini API",          "AI",           "✨",  65),
-        new("Distributed Systems", "Systems",      "🔗",  65),
-        new("systemd",             "DevOps",       "🖥️",  60),
-        new("ActionScript",        "Legacy",       "📜",  50),
+        new("Flutter/Dart",        "Mobile",       "devicon-flutter-plain colored",    95),
+        new("Swift / SwiftUI",     "iOS",          "devicon-swift-plain colored",      92),
+        new("visionOS",            "Spatial",      "devicon-apple-plain",              90),
+        new("Blazor",              "Web",          "devicon-blazor-plain colored",     90),
+        new("UIKit",               "iOS",          "devicon-xcode-plain colored",      88),
+        new("Claude API",          "AI",           "◆",                                88),
+        new("React",               "Web",          "devicon-react-original colored",   86),
+        new("C#",                  "Language",     "devicon-csharp-plain colored",     86),
+        new("RealityKit",          "Spatial",      "devicon-apple-plain",              82),
+        new("Kotlin",              "Android",      "devicon-kotlin-plain colored",     80),
+        new("Heuristic Search",    "AI Research",  "◆",                                80),
+        new("DDD",                 "Architecture", "◆",                                78),
+        new("AI Planning",         "Research",     "◆",                                78),
+        new("ARKit",               "Spatial",      "devicon-apple-plain",              76),
+        new("Git / CI·CD",         "Tooling",      "devicon-git-plain colored",        75),
+        new("PDF Generation",      "Web",          "◆",                                75),
+        new("Python",              "Scripting",    "devicon-python-plain colored",     74),
+        new("Observable",          "Patterns",     "◆",                                72),
+        new("TypeScript",          "Language",     "devicon-typescript-plain colored", 72),
+        new("ASP.NET Core",        "Backend",      "devicon-dotnetcore-plain colored", 70),
+        new("Jetpack Compose",     "Android",      "devicon-android-plain colored",    70),
+        new("Gemini API",          "AI",           "devicon-google-plain colored",     65),
+        new("Distributed Systems", "Systems",      "◆",                                65),
+        new("systemd",             "DevOps",       "devicon-linux-plain colored",      60),
+        new("ActionScript",        "Legacy",       "devicon-flash-plain colored",      50),
     ];
 }

@@ -120,7 +120,7 @@ nav {
     position: relative; z-index: 1;
     max-width: 1280px; width: 100%; margin: 0 auto;
     padding: 8rem 3rem 4rem;
-    display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; gap: 4rem;
 }
 .hero-eyebrow {
     font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em;
@@ -133,6 +133,7 @@ nav {
 .hero-title { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--mist); margin-bottom: 2.4rem; line-height: 1.5; }
 .hero-desc { font-size: 0.95rem; line-height: 1.75; color: var(--silver); max-width: 42ch; margin-bottom: 3rem; }
 .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.hero-social { display: flex; gap: 1.8rem; margin-top: 1.6rem; }
 
 .btn-primary {
     display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.8rem;
@@ -150,9 +151,9 @@ nav {
 }
 .btn-ghost:hover { color: var(--chalk); border-color: var(--mist); transform: translateY(-1px); }
 
-.hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+.hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: stretch; }
 .platform-card {
-    width: 420px; height: 400px;
+    width: 100%; height: 100%;
     background: linear-gradient(145deg, var(--slate) 0%, var(--navy) 100%);
     border: 1px solid var(--steel); border-radius: 2px;
     position: relative; overflow: hidden;
@@ -196,7 +197,8 @@ section { padding: 7rem 0; }
 /* ── SKILLS ──────────────────────────────────────────────────── */
 #skills { background: var(--ink); border-top: 1px solid var(--slate); }
 .skills-board { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--slate); border: 1px solid var(--slate); }
-.skills-other { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+.skills-other-box { margin-top: 1rem; border: 1px solid var(--slate); background: var(--ink); }
+.skills-other { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 1.1rem 1.5rem; }
 .skills-col { background: var(--ink); }
 .skills-col-header { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--slate); background: var(--ink); }
 .skill-row {
@@ -213,6 +215,7 @@ section { padding: 7rem 0; }
 }
 .skill-row-identity { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
 .skill-row-icon { width: 32px; height: 32px; background: var(--slate); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.skill-row-icon i { font-size: 1.25rem; }
 .skill-row-name { font-family: var(--sans); font-size: 0.88rem; font-weight: 600; color: var(--chalk); }
 .skill-row-cat { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); margin-top: 0.1rem; }
 .skill-row-meter { flex-shrink: 0; width: 110px; }
@@ -303,7 +306,7 @@ footer p { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; 
 @media (max-width: 1024px) {
     :root { --pad-x: 2rem; }
     .hero-inner { gap: 2.5rem; }
-    .platform-card { width: 360px; height: 320px; }
+    .platform-card { width: 100%; height: 100%; }
     .about-grid { gap: 3rem; }
     .work-row-wn, .work-row-nw, .work-row-eq { grid-template-columns: repeat(2, 1fr); }
     .work-item-featured, .work-item-wide { grid-column: auto; aspect-ratio: 4/3; }
