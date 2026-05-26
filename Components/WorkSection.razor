@@ -21,8 +21,13 @@
                         <div class="@itemCss">
                             <img src="@item.ImageUrl" alt="@item.ImageAlt" />
                             <div class="work-item-info">
-                                <div class="work-item-tag">@string.Join(" · ", item.Tags)</div>
                                 <div class="work-item-title">@item.Title</div>
+                                <div class="work-item-tag">
+                                    @foreach (var tag in item.Tags)
+                                    {
+                                        <span class="skill-box work-tag">@tag</span>
+                                    }
+                                </div>
                             </div>
                             @if (item.Links.Length > 0)
                             {

@@ -12,6 +12,26 @@
     ]
   },
   {
+    "title": "JobFit™ — AI Job Match Analyser",
+    "tags": ["Blazor", "Claude API", "C#"],
+    "imageUrl": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80",
+    "imageAlt": "JobFit career matching",
+    "description": "AI-powered tool that scores a CV against a job description, surfaces skill gaps, and drafts a tailored cover letter — built with Blazor and the Claude API.",
+    "featured": false,
+    "links": []
+  },
+  {
+    "title": "PDF Form Builder",
+    "tags": ["Blazor", "PDF Generation"],
+    "imageUrl": "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
+    "imageAlt": "CV Builder",
+    "description": "A browser-based drag-and-drop editor for building and exporting PDF forms.",
+    "featured": true,
+    "links": [
+      { "label": "Open Form Builder ↗", "url": "https://editor.carkus.com/form-editor" }
+    ]
+  },
+  {
     "title": "Chatty Prayers",
     "tags": ["Blazor", "C#", "AI"],
     "imageUrl": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
@@ -30,22 +50,11 @@
     "links": []
   },
   {
-    "title": "PDF Form Builder",
-    "tags": ["Blazor", "PDF Generation"],
-    "imageUrl": "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
-    "imageAlt": "CV Builder",
-    "description": "A browser-based drag-and-drop editor for building and exporting PDF forms.",
-    "featured": true,
-    "links": [
-      { "label": "Open Form Builder ↗", "url": "https://editor.carkus.com/form-editor" }
-    ]
-  },
-  {
-    "title": "Heuristic Search in Robotic Task Planning",
-    "tags": ["Research", "AI Planning"],
+    "title": "Search in Robotic Task Planning",
+    "tags": ["AI Research", "Robotics Task Planning"],
     "imageUrl": "https://images.unsplash.com/photo-1647427060118-4911c9821b82?w=600&q=80",
     "imageAlt": "Robotics research",
-    "description": "Academic research into heuristic search algorithms applied to autonomous robotic task planning.",
+    "description": "Academic research into heuristic search and efficiency for algorithms applied to autonomous robotic task planning.",
     "featured": false,
     "links": []
   }
