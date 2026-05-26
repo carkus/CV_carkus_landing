@@ -12,4 +12,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.6" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- Remove pre-compressed files from publish output.
+       Shared Apache hosts often lack mod_headers, so serving .gz/.br files
+       without correct Content-Encoding breaks CSS and WASM integrity checks.
+       Apache mod_deflate handles on-the-fly compression correctly. -->
+  <Target Name="RemovePrecompressedFiles" AfterTargets="Publish">
+    <ItemGroup>
+      <_PrecompressedFiles Include="$(PublishDir)wwwroot\**\*.gz" />
+      <_PrecompressedFiles Include="$(PublishDir)wwwroot\**\*.br" />
+    </ItemGroup>
+    <Delete Files="@(_PrecompressedFiles)" />
+  </Target>
+
 </Project>

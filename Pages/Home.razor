@@ -17,6 +17,9 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
+        {
             await JS.InvokeVoidAsync("initScrollReveal");
+            await JS.InvokeVoidAsync("initDragScroll", "expertiseScroll");
+        }
     }
 }

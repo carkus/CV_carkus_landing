@@ -15,3 +15,36 @@ window.initDragScroll = (elementId) => {
     el.addEventListener('mousemove',  e => { if (!isDown) return; e.preventDefault(); el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX) * 1.4; });
     el.style.cursor = 'grab';
 };
+
+window.initSkillsBoard = (boardId) => {
+    const board = document.getElementById(boardId);
+    if (!board) return;
+    let timers = [];
+
+    const reset = () => {
+        timers.forEach(clearTimeout);
+        timers = [];
+        board.querySelectorAll('.skill-row').forEach(row => {
+            row.classList.remove('revealed');
+            const fill = row.querySelector('.skill-row-bar-fill');
+            if (fill) fill.style.transition = 'none';
+        });
+    };
+
+    const cascade = () => {
+        board.querySelectorAll('.skills-col').forEach(col => {
+            col.querySelectorAll('.skill-row').forEach((row, i) => {
+                const t = setTimeout(() => {
+                    const fill = row.querySelector('.skill-row-bar-fill');
+                    if (fill) fill.style.transition = '';
+                    row.classList.add('revealed');
+                }, i * 90);
+                timers.push(t);
+            });
+        });
+    };
+
+    new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? cascade() : reset();
+    }, { threshold: 0.15 }).observe(board);
+};
