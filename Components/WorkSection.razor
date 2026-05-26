@@ -8,20 +8,30 @@
         <p class="section-sub reveal reveal-delay-2">A cross-section of what I've built — spanning spatial computing, mobile, AI, and web.</p>
         <div class="work-grid reveal reveal-delay-3">
 
-            @foreach (var item in _items)
+            @foreach (var row in _rows)
             {
-                <div class="work-item @(item.Featured ? "featured" : "")">
-                    <img src="@item.ImageUrl" alt="@item.ImageAlt" />
-                    <div class="work-item-info">
-                        <div class="work-item-tag">@string.Join(" · ", item.Tags)</div>
-                        <div class="work-item-title">@item.Title</div>
-                    </div>
-                    @if (item.Links.Length > 0)
+                var rowCss = row.Kind == RowKind.NarrowWide ? "work-row work-row-nw"
+                           : row.Kind == RowKind.ThreeEqual ? "work-row work-row-eq"
+                           : "work-row work-row-wn";
+                <div class="@rowCss">
+                    @for (int idx = 0; idx < row.Items.Length; idx++)
                     {
-                        <div class="work-item-links">
-                            @foreach (var link in item.Links)
+                        var item = row.Items[idx];
+                        var itemCss = ItemClass(row, idx);
+                        <div class="@itemCss">
+                            <img src="@item.ImageUrl" alt="@item.ImageAlt" />
+                            <div class="work-item-info">
+                                <div class="work-item-tag">@string.Join(" · ", item.Tags)</div>
+                                <div class="work-item-title">@item.Title</div>
+                            </div>
+                            @if (item.Links.Length > 0)
                             {
-                                <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="work-item-link">@link.Label</a>
+                                <div class="work-item-links">
+                                    @foreach (var link in item.Links)
+                                    {
+                                        <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="work-item-link">@link.Label</a>
+                                    }
+                                </div>
                             }
                         </div>
                     }
@@ -33,7 +43,10 @@
 </section>
 
 @code {
-    private WorkItem[] _items = Fallback;
+    private enum RowKind { WideNarrow, NarrowWide, ThreeEqual }
+    private record Row(WorkItem[] Items, RowKind Kind, bool IsFirst);
+
+    private List<Row> _rows = BuildRows(Fallback);
 
     protected override async Task OnInitializedAsync()
     {
@@ -42,9 +55,48 @@
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var loaded = await Http.GetFromJsonAsync<WorkItem[]>("data/workitems.json", opts);
             if (loaded is { Length: > 0 })
-                _items = loaded;
+                _rows = BuildRows(loaded);
         }
         catch { }
+    }
+
+    private static string ItemClass(Row row, int idx) => row.Kind switch
+    {
+        RowKind.ThreeEqual  => "work-item work-item-equal",
+        RowKind.WideNarrow  => idx == 0
+                                   ? (row.IsFirst ? "work-item work-item-featured" : "work-item work-item-wide")
+                                   : "work-item work-item-narrow",
+        RowKind.NarrowWide  => idx == 0 ? "work-item work-item-narrow" : "work-item work-item-wide",
+        _                   => "work-item"
+    };
+
+    private static List<Row> BuildRows(WorkItem[] items)
+    {
+        var rows = new List<Row>();
+        int n = items.Length;
+        if (n == 0) return rows;
+
+        // Odd count ≥ 3 → last 3 become a three-equal row to avoid a lone orphan
+        int endOfPairs = n % 2 == 1 && n >= 3 ? n - 3
+                       : n % 2 == 0            ? n
+                       : 0;
+        bool wideFirst = true;
+        bool isFirst   = true;
+
+        for (int i = 0; i < endOfPairs; i += 2)
+        {
+            rows.Add(new Row(items[i..(i + 2)], wideFirst ? RowKind.WideNarrow : RowKind.NarrowWide, isFirst));
+            wideFirst = !wideFirst;
+            isFirst   = false;
+        }
+
+        if (endOfPairs < n)
+        {
+            var rest = items[endOfPairs..];
+            rows.Add(new Row(rest, rest.Length == 3 ? RowKind.ThreeEqual : RowKind.WideNarrow, isFirst));
+        }
+
+        return rows;
     }
 
     private static readonly WorkItem[] Fallback =
@@ -76,7 +128,7 @@
             "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
             "CV Builder",
             "A browser-based drag-and-drop editor for building and exporting PDF forms.",
-            Featured: false,
+            Featured: true,
             [new("Open Editor ↗", "https://editor.carkus.com/form-editor")]),
         new("Heuristic Search in Robotic Task Planning",
             ["Research", "AI Planning"],
