@@ -47,16 +47,6 @@
         catch { }
     }
 
-    private record WorkLink(string Label, string Url);
-    private record WorkItem(
-        string Title,
-        string[] Tags,
-        string ImageUrl,
-        string ImageAlt,
-        string Description,
-        bool Featured,
-        WorkLink[] Links);
-
     private static readonly WorkItem[] Fallback =
     [
         new("ZOME — Cross-platform product suite",

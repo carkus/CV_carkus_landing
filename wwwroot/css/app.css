@@ -163,6 +163,9 @@ nav {
 .platform-label { position: absolute; bottom: 1.6rem; left: 1.6rem; right: 1.6rem; transition: opacity 0.35s ease; }
 .platform-label span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); }
 .platform-label p { font-family: var(--serif); font-size: 1.3rem; color: var(--chalk); margin-top: 0.3rem; }
+.platform-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.7rem; }
+.platform-link { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; border: 1px solid var(--steel); padding: 0.2rem 0.55rem; background: rgba(13,21,38,0.5); backdrop-filter: blur(4px); transition: color 0.2s, border-color 0.2s; }
+.platform-link:hover { color: var(--chalk); border-color: var(--accent2); }
 
 /* ── SECTION BASE ────────────────────────────────────────────── */
 section { padding: 7rem 0; }
@@ -220,7 +223,7 @@ section { padding: 7rem 0; }
 
 /* ── WORK ────────────────────────────────────────────────────── */
 #work { background: var(--navy); border-top: 1px solid var(--slate); }
-.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--slate); border: 1px solid var(--slate); }
+.work-grid { display: grid; grid-template-columns: 3fr 3fr 2fr; gap: 1.5px; background: var(--slate); border: 1px solid var(--slate); }
 .work-item { background: var(--navy); position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
 .work-item.featured { grid-column: span 2; aspect-ratio: 16/9; }
 .work-item.featured + .work-item { aspect-ratio: unset; align-self: stretch; }

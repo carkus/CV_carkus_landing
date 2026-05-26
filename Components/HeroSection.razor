@@ -1,5 +1,7 @@
 @implements IDisposable
 @inject IConfiguration Config
+@inject HttpClient Http
+@using System.Text.Json
 
 <section id="hero">
     <div class="hero-bg"></div>
@@ -17,12 +19,21 @@
         </div>
         <div class="hero-visual">
             <div class="platform-card">
-                <img class="platform-img" src="@_current.Img" alt="@_current.Alt"
+                <img class="platform-img" src="@_current.ImageUrl" alt="@_current.ImageAlt"
                      style="opacity: @(_visible ? "0.55" : "0")" />
                 <div class="platform-overlay"></div>
                 <div class="platform-label" style="opacity: @(_visible ? "1" : "0")">
                     <span>Featured Platform</span>
                     <p>@_current.Title</p>
+                    @if (_current.Links.Length > 0)
+                    {
+                        <div class="platform-links">
+                            @foreach (var link in _current.Links)
+                            {
+                                <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="platform-link">@link.Label</a>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -30,23 +41,25 @@
 </section>
 
 @code {
-    private record Platform(string Title, string Img, string Alt);
-
-    private static readonly Platform[] _platforms =
-    [
-        new("ZOME — Cross-platform product",
-            "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=600&q=80",
-            "ZOME platform"),
-        new("Chatty Prayers",
-            "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
-            "Chatty Prayers"),
-    ];
-
+    private WorkItem[] _items = Fallback;
     private int   _idx     = 0;
     private bool  _visible = true;
     private Timer? _timer;
 
-    private Platform _current => _platforms[_idx];
+    private WorkItem _current => _items[_idx];
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("data/workitems.json", opts);
+            var featured = loaded?.Where(i => i.Featured).ToArray();
+            if (featured is { Length: > 0 })
+                _items = featured;
+        }
+        catch { }
+    }
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -59,10 +72,29 @@
         _visible = false;
         StateHasChanged();
         await Task.Delay(700);
-        _idx = (_idx + 1) % _platforms.Length;
+        _idx = (_idx + 1) % _items.Length;
         _visible = true;
         StateHasChanged();
     }
 
     public void Dispose() => _timer?.Dispose();
+
+    private static readonly WorkItem[] Fallback =
+    [
+        new("ZOME — Cross-platform product suite",
+            ["Flutter", "Swift", "Kotlin", "visionOS"],
+            "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=600&q=80",
+            "ZOME platform",
+            "",
+            Featured: true,
+            [
+                new("App Store ↗", "https://itunes.apple.com/us/app/zome/id1382123356?ls=1&mt=8"),
+                new("Play Store ↗", "https://play.google.com/store/apps/details?id=com.zomecorp.zome"),
+            ]),
+        new("Chatty Prayers",
+            ["Blazor", "C#", "AI"],
+            "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+            "Chatty Prayers",
+            "", Featured: false, []),
+    ];
 }
