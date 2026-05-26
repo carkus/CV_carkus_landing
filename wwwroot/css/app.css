@@ -196,6 +196,7 @@ section { padding: 7rem 0; }
 /* ── SKILLS ──────────────────────────────────────────────────── */
 #skills { background: var(--ink); border-top: 1px solid var(--slate); }
 .skills-board { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--slate); border: 1px solid var(--slate); }
+.skills-other { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
 .skills-col { background: var(--ink); }
 .skills-col-header { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--slate); background: var(--ink); }
 .skill-row {
