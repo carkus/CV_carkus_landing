@@ -1,4 +1,6 @@
 @inject IJSRuntime JS
+@inject HttpClient Http
+@using System.Text.Json
 
 <section id="expertise">
     <div class="section-inner">
@@ -12,7 +14,7 @@
     </div>
     <div style="max-width:1280px;margin:0 auto;overflow:hidden;">
         <div class="expertise-scroll-area" id="expertiseScroll">
-            @foreach (var p in Panels)
+            @foreach (var p in _panels)
             {
                 <div class="expertise-panel" data-num="@p.Num">
                     <img src="@p.Img" alt="@p.Alt"
@@ -32,22 +34,43 @@
 </section>
 
 @code {
+    private Panel[] _panels = Fallback;
+    private bool _justLoaded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var loaded = await Http.GetFromJsonAsync<Panel[]>("data/expertise.json", opts);
+            if (loaded is { Length: > 0 })
+            {
+                _panels = loaded;
+                _justLoaded = true;
+            }
+        }
+        catch { }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender || _justLoaded)
+        {
+            _justLoaded = false;
             await JS.InvokeVoidAsync("initDragScroll", "expertiseScroll");
+        }
     }
 
     private record Panel(string Num, string Img, string Alt, string Title, string Desc, string[] Tags);
 
-    private static readonly Panel[] Panels =
+    private static readonly Panel[] Fallback =
     [
         new("01",
             "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=380&q=70",
             "Mobile",
             "Mobile Engineering",
             "Production experience across Flutter, Swift/UIKit, SwiftUI, and Kotlin — including complex native integrations, build pipelines, and lifecycle management.",
-            ["Flutter", "SwiftUI", "UIKit", "Kotlin", "Jetpack Compose"]),
+            ["Flutter", "SwiftUI", "UIKit", "Jetpack Compose/Kotlin"]),
 
         new("02",
             "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=380&q=70",

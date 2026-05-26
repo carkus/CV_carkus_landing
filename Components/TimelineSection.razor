@@ -1,49 +1,78 @@
+@inject HttpClient Http
+@using System.Text.Json
+
 <section id="timeline">
     <div class="section-inner">
         <div class="timeline-inner">
             <div class="section-eyebrow reveal">Timeline</div>
             <h2 class="section-heading reveal reveal-delay-1">Career arc</h2>
 
-            <div class="timeline-item reveal">
-                <div class="timeline-year">2016–<br>present</div>
-                <div class="timeline-dot"></div>
-                <div>
-                    <div class="timeline-role">Senior Software Engineer</div>
-                    <div class="timeline-org">Rhizomenet — ZOME</div>
-                    <p class="timeline-desc">Core middle and front-end engineer on ZOME, a large-scale cross-platform product. Flutter UI, native iOS and Android middleware layers, and a SwiftUI/visionOS spatial computing app. Early visionOS developer within the team.</p>
+            @for (int i = 0; i < _entries.Length; i++)
+            {
+                var entry = _entries[i];
+                var cls = i == 0 ? "timeline-item reveal" : $"timeline-item reveal reveal-delay-{i}";
+                <div class="@cls">
+                    <div class="timeline-year">@((MarkupString)string.Join("<br>", entry.Year))</div>
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <div class="timeline-role">@entry.Role</div>
+                        <div class="timeline-org">@entry.Org</div>
+                        <p class="timeline-desc">
+                            @entry.Desc
+                            @if (entry.Tags.Length > 0)
+                            {
+                                <span style="color:var(--steel);font-family:var(--mono);font-size:0.78em;">@string.Join(" · ", entry.Tags)</span>
+                            }
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="timeline-item reveal reveal-delay-1">
-                <div class="timeline-year">2018<br>MSc</div>
-                <div class="timeline-dot"></div>
-                <div>
-                    <div class="timeline-role">MSc Computer Science — Distinction</div>
-                    <div class="timeline-org">RMIT University</div>
-                    <p class="timeline-desc">Thesis focused on heuristic search algorithms applied to robotic task planning. Broader studies in AI, distributed systems, and software engineering theory.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item reveal reveal-delay-2">
-                <div class="timeline-year">2007–<br>2014</div>
-                <div class="timeline-dot"></div>
-                <div>
-                    <div class="timeline-role">Senior Application Developer</div>
-                    <div class="timeline-org">RMIT University</div>
-                    <p class="timeline-desc">Architected and delivered a full e-learning platform — front-end applications and middleware — serving the university's digital education programme. Owned the codebase across maintenance, adaptation, and new feature development. <span style="color:var(--steel);font-family:var(--mono);font-size:0.78em;">.NET · React · AngularJS · MVC</span></p>
-                </div>
-            </div>
-
-            <div class="timeline-item reveal reveal-delay-3">
-                <div class="timeline-year">Personal</div>
-                <div class="timeline-dot"></div>
-                <div>
-                    <div class="timeline-role">carkus.com</div>
-                    <div class="timeline-org">Independent — Portfolio &amp; Projects</div>
-                    <p class="timeline-desc">Personal projects including Chatty Prayers (Blazor AI companion app), PDF Forms (Blazor PDF builder with AcroForm generation), and spatial computing prototypes on visionOS.</p>
-                </div>
-            </div>
+            }
 
         </div>
     </div>
 </section>
+
+@code {
+    private Entry[] _entries = Fallback;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var loaded = await Http.GetFromJsonAsync<Entry[]>("data/timeline.json", opts);
+            if (loaded is { Length: > 0 })
+                _entries = loaded;
+        }
+        catch { }
+    }
+
+    private record Entry(string[] Year, string Role, string Org, string Desc, string[] Tags);
+
+    private static readonly Entry[] Fallback =
+    [
+        new(["2017–", "present"],
+            "Senior Software Engineer",
+            "Rhizomenet — ZOME",
+            "Core middle and front-end engineer on ZOME, a large-scale cross-platform product. Flutter UI, native iOS and Android middleware layers, and a SwiftUI/visionOS spatial computing app. Early visionOS developer within the team.",
+            []),
+
+        new(["2018", "MSc"],
+            "MSc Computer Science — Distinction",
+            "RMIT University",
+            "Thesis focused on heuristic search algorithms applied to robotic task planning. Broader studies in AI, distributed systems, and software engineering theory.",
+            []),
+
+        new(["2007–", "2014"],
+            "Senior Application Developer",
+            "RMIT University",
+            "Architected and delivered a full e-learning platform — front-end applications and middleware — serving the university's digital education programme. Owned the codebase across maintenance, adaptation, and new feature development.",
+            [".NET", "React", "AngularJS", "MVC"]),
+
+        new(["Personal"],
+            "carkus.com",
+            "Independent — Portfolio & Projects",
+            "Personal projects including Chatty Prayers (Blazor AI companion app), PDF Forms (Blazor PDF builder with AcroForm generation), and spatial computing prototypes on visionOS.",
+            []),
+    ];
+}
