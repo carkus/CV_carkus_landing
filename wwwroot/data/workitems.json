@@ -1,0 +1,52 @@
+[
+  {
+    "title": "ZOME — Cross-platform product suite",
+    "tags": ["Flutter", "Swift", "Kotlin", "visionOS"],
+    "imageUrl": "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=900&q=80",
+    "imageAlt": "ZOME platform",
+    "description": "End-to-end product suite spanning iOS, Android, and Apple Vision Pro — built with Flutter and native platform SDKs.",
+    "featured": true,
+    "links": [
+      { "label": "App Store ↗", "url": "https://itunes.apple.com/us/app/zome/id1382123356?ls=1&mt=8" },
+      { "label": "Play Store ↗", "url": "https://play.google.com/store/apps/details?id=com.zomecorp.zome" }
+    ]
+  },
+  {
+    "title": "Chatty Prayers",
+    "tags": ["Blazor", "C#", "AI"],
+    "imageUrl": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+    "imageAlt": "Chatty Prayers",
+    "description": "AI-assisted prayer and devotional web app built with Blazor WebAssembly.",
+    "featured": false,
+    "links": []
+  },
+  {
+    "title": "Spatial UI Components",
+    "tags": ["visionOS", "RealityKit"],
+    "imageUrl": "https://images.unsplash.com/photo-1713445289643-fa1902dd9a03?w=600&q=80",
+    "imageAlt": "visionOS spatial",
+    "description": "A library of reusable spatial UI components for Apple Vision Pro using RealityKit and SwiftUI.",
+    "featured": false,
+    "links": []
+  },
+  {
+    "title": "PDF Form Builder",
+    "tags": ["Blazor", "PDF Generation"],
+    "imageUrl": "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
+    "imageAlt": "CV Builder",
+    "description": "A browser-based drag-and-drop editor for building and exporting PDF forms.",
+    "featured": false,
+    "links": [
+      { "label": "Open Editor ↗", "url": "https://editor.carkus.com/form-editor" }
+    ]
+  },
+  {
+    "title": "Heuristic Search in Robotic Task Planning",
+    "tags": ["Research", "AI Planning"],
+    "imageUrl": "https://images.unsplash.com/photo-1647427060118-4911c9821b82?w=600&q=80",
+    "imageAlt": "Robotics research",
+    "description": "Academic research into heuristic search algorithms applied to autonomous robotic task planning.",
+    "featured": false,
+    "links": []
+  }
+]

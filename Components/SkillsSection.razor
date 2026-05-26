@@ -1,4 +1,6 @@
 @inject IJSRuntime JS
+@inject HttpClient Http
+@using System.Text.Json
 
 <section id="skills">
     <div class="section-inner">
@@ -8,7 +10,7 @@
     </div>
     <div class="section-inner" style="padding-top:0;">
         <div class="skills-board" id="skillsBoard">
-            @foreach (var col in Cols)
+            @foreach (var col in _cols)
             {
                 <div class="skills-col">
                     <div class="skills-col-header">@col.Header</div>
@@ -39,16 +41,37 @@
 </section>
 
 @code {
+    private Col[] _cols = Fallback;
+    private bool _justLoaded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var loaded = await Http.GetFromJsonAsync<Col[]>("data/skills.json", opts);
+            if (loaded is { Length: > 0 })
+            {
+                _cols = loaded;
+                _justLoaded = true;
+            }
+        }
+        catch { }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender || _justLoaded)
+        {
+            _justLoaded = false;
             await JS.InvokeVoidAsync("initSkillsBoard", "skillsBoard");
+        }
     }
 
     private record Skill(string Name, string Cat, string Icon, int Pct);
     private record Col(string Header, Skill[] Skills);
 
-    private static readonly Col[] Cols =
+    private static readonly Col[] Fallback =
     [
         new("High Proficiency",
         [

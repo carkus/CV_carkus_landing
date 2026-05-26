@@ -1,0 +1,26 @@
+[
+  {
+    "header": "High Proficiency",
+    "skills": [
+      { "name": "Flutter",         "cat": "Mobile",     "icon": "🐦", "pct": 95 },
+      { "name": "Swift / SwiftUI", "cat": "iOS",        "icon": "🍎", "pct": 92 },
+      { "name": "Kotlin",          "cat": "Android",    "icon": "🤖", "pct": 80 },
+      { "name": "VisionOS",        "cat": "Spatial",    "icon": "🥽", "pct": 90 },
+      { "name": "C# / Blazor",     "cat": "Web",        "icon": "🔷", "pct": 95 },
+      { "name": "Git / CI",        "cat": "Tooling",    "icon": "🔧", "pct": 85 },
+      { "name": "Dart",            "cat": "Language",   "icon": "🎯", "pct": 94 }
+    ]
+  },
+  {
+    "header": "Extended Stack",
+    "skills": [
+      { "name": "React",           "cat": "Web",        "icon": "⚛️", "pct": 75 },
+      { "name": "TypeScript",      "cat": "Language",   "icon": "📘", "pct": 72 },
+      { "name": "ARKit",           "cat": "Spatial",    "icon": "📡", "pct": 76 },
+      { "name": "Python",          "cat": "Scripting",  "icon": "🐍", "pct": 74 },
+      { "name": "ASP.NET Core",    "cat": "Backend",    "icon": "⚙️", "pct": 70 },
+      { "name": "UIKit",           "cat": "iOS Legacy", "icon": "📱", "pct": 88 },
+      { "name": "Claude API",      "cat": "AI",         "icon": "🧠", "pct": 88 }
+    ]
+  }
+]
