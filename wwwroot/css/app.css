@@ -152,7 +152,7 @@ nav {
 
 .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
 .platform-card {
-    width: 320px; height: 400px;
+    width: 420px; height: 400px;
     background: linear-gradient(145deg, var(--slate) 0%, var(--navy) 100%);
     border: 1px solid var(--steel); border-radius: 2px;
     position: relative; overflow: hidden;
@@ -163,8 +163,8 @@ nav {
 .platform-label { position: absolute; bottom: 1.6rem; left: 1.6rem; right: 1.6rem; transition: opacity 0.35s ease; }
 .platform-label span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); }
 .platform-label p { font-family: var(--serif); font-size: 1.3rem; color: var(--chalk); margin-top: 0.3rem; }
-.platform-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.7rem; }
-.platform-link { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; border: 1px solid var(--steel); padding: 0.2rem 0.55rem; background: rgba(13,21,38,0.5); backdrop-filter: blur(4px); transition: color 0.2s, border-color 0.2s; }
+.platform-links { position: absolute; top: 1.4rem; left: 1.4rem; display: flex; gap: 0.6rem; flex-wrap: wrap; z-index: 2; transition: opacity 0.35s ease; }
+.platform-link { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; border: 1px solid var(--mist); padding: 0.22rem 0.6rem; background: rgba(13,21,38,0.5); backdrop-filter: blur(4px); transition: color 0.2s, border-color 0.2s; }
 .platform-link:hover { color: var(--chalk); border-color: var(--accent2); }
 
 /* ── SECTION BASE ────────────────────────────────────────────── */
@@ -293,7 +293,7 @@ footer p { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; 
 @media (max-width: 1024px) {
     :root { --pad-x: 2rem; }
     .hero-inner { gap: 2.5rem; }
-    .platform-card { width: 260px; height: 320px; }
+    .platform-card { width: 360px; height: 320px; }
     .about-grid { gap: 3rem; }
     .work-grid { grid-template-columns: repeat(2, 1fr); }
     .work-item.featured { grid-column: span 2; }

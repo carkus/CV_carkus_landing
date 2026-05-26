@@ -22,18 +22,18 @@
                 <img class="platform-img" src="@_current.ImageUrl" alt="@_current.ImageAlt"
                      style="opacity: @(_visible ? "0.55" : "0")" />
                 <div class="platform-overlay"></div>
+                @if (_current.Links.Length > 0)
+                {
+                    <div class="platform-links" style="opacity: @(_visible ? "1" : "0")">
+                        @foreach (var link in _current.Links)
+                        {
+                            <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="platform-link">@link.Label</a>
+                        }
+                    </div>
+                }
                 <div class="platform-label" style="opacity: @(_visible ? "1" : "0")">
                     <span>Featured Platform</span>
                     <p>@_current.Title</p>
-                    @if (_current.Links.Length > 0)
-                    {
-                        <div class="platform-links">
-                            @foreach (var link in _current.Links)
-                            {
-                                <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="platform-link">@link.Label</a>
-                            }
-                        </div>
-                    }
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && _items.Length > 1)
             _timer = new Timer(_ => InvokeAsync(Advance), null, 8000, 8000);
     }
 

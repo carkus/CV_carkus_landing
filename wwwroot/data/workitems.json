@@ -35,9 +35,9 @@
     "imageUrl": "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
     "imageAlt": "CV Builder",
     "description": "A browser-based drag-and-drop editor for building and exporting PDF forms.",
-    "featured": false,
+    "featured": true,
     "links": [
-      { "label": "Open Editor ↗", "url": "https://editor.carkus.com/form-editor" }
+      { "label": "Open Form Builder ↗", "url": "https://editor.carkus.com/form-editor" }
     ]
   },
   {
