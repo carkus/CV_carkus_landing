@@ -17,13 +17,16 @@
                     <div>
                         <div class="timeline-role">@entry.Role</div>
                         <div class="timeline-org">@entry.Org</div>
-                        <p class="timeline-desc">
-                            @entry.Desc
-                            @if (entry.Tags.Length > 0)
-                            {
-                                <span style="color:var(--steel);font-family:var(--mono);font-size:0.78em;">@string.Join(" · ", entry.Tags)</span>
-                            }
-                        </p>
+                        <p class="timeline-desc">@entry.Desc</p>
+                        @if (entry.Tags.Length > 0)
+                        {
+                            <div class="timeline-tags">
+                                @foreach (var tag in entry.Tags)
+                                {
+                                    <span class="skill-box etag">@tag</span>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             }
@@ -55,13 +58,13 @@
             "Senior Software Engineer",
             "Rhizomenet — ZOME",
             "Core middle and front-end engineer on ZOME, a large-scale cross-platform product. Flutter UI, native iOS and Android middleware layers, and a SwiftUI/visionOS spatial computing app. Early visionOS developer within the team.",
-            []),
+            ["Flutter", "Swift", "Kotlin", "visionOS", "Blazor"]),
 
         new(["2018", "MSc"],
             "MSc Computer Science — Distinction",
             "RMIT University",
             "Thesis focused on heuristic search algorithms applied to robotic task planning. Broader studies in AI, distributed systems, and software engineering theory.",
-            []),
+            ["Heuristic Search", "AI Planning", "Distributed Systems"]),
 
         new(["2007–", "2014"],
             "Senior Application Developer",
@@ -73,6 +76,6 @@
             "carkus.com",
             "Independent — Portfolio & Projects",
             "Personal projects including Chatty Prayers (Blazor AI companion app), PDF Forms (Blazor PDF builder with AcroForm generation), and spatial computing prototypes on visionOS.",
-            []),
+            ["Blazor", "Claude API", "visionOS", "PDF Generation"]),
     ];
 }

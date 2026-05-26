@@ -1,3 +1,6 @@
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 window.initScrollReveal = () => {
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
