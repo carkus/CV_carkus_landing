@@ -17,5 +17,5 @@
   { "name": "ASP.NET Core",        "cat": "Backend",      "icon": "devicon-dotnetcore-plain colored",  "pct": 70 },
   { "name": "Jetpack Compose",     "cat": "Android",      "icon": "devicon-android-plain colored",     "pct": 70 },
   { "name": "ARKit",               "cat": "Spatial",      "icon": "devicon-apple-plain",               "pct": 66 },
-  { "name": "systemd",             "cat": "DevOps",       "icon": "devicon-linux-plain colored",       "pct": 60 },
+  { "name": "systemd",             "cat": "DevOps",       "icon": "devicon-linux-plain colored",       "pct": 60 }
 ]
