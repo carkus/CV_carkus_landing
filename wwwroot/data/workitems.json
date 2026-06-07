@@ -32,13 +32,15 @@
     ]
   },
   {
-    "title": "Chatty Prayers",
-    "tags": ["Blazor", "C#", "AI"],
+    "title": "Moot — AI Conversation & Debate",
+    "tags": ["Blazor", "Claude API", "Gemini API"],
     "imageUrl": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
-    "imageAlt": "Chatty Prayers",
-    "description": "AI-assisted prayer and devotional web app built with Blazor WebAssembly.",
+    "imageAlt": "Moot AI conversation",
+    "description": "Personality-driven AI platform with one-on-one chat, confidant reflection, and structured multi-participant debate — built with Blazor and the Claude and Gemini APIs.",
     "featured": false,
-    "links": []
+    "links": [
+      { "label": "Open Moot ↗", "url": "https://moot.carkus.com" }
+    ]
   },
   {
     "title": "Spatial UI Components",
