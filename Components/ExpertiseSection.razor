@@ -1,5 +1,6 @@
 @inject IJSRuntime JS
 @inject HttpClient Http
+@inject IConfiguration Config
 @using System.Text.Json
 
 <section id="expertise">
@@ -42,7 +43,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<Panel[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/expertise.json", opts);
+            var loaded = await Http.GetFromJsonAsync<Panel[]>($"{Config["DataRepo"]}expertise.json", opts);
             if (loaded is { Length: > 0 })
             {
                 _panels = loaded;

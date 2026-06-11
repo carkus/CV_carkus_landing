@@ -59,7 +59,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/workitems.json", opts);
+            var loaded = await Http.GetFromJsonAsync<WorkItem[]>($"{Config["DataRepo"]}workitems.json", opts);
             var featured = loaded?.Where(i => i.Featured).ToArray();
             if (featured is { Length: > 0 })
                 _items = featured;

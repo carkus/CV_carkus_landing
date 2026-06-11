@@ -1,5 +1,6 @@
 @inject IJSRuntime JS
 @inject HttpClient Http
+@inject IConfiguration Config
 @using System.Text.Json
 
 <section id="skills">
@@ -76,7 +77,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<Skill[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/skills.json", opts);
+            var loaded = await Http.GetFromJsonAsync<Skill[]>($"{Config["DataRepo"]}skills.json", opts);
             if (loaded is { Length: > 0 })
             {
                 _cols = BuildCols(loaded);

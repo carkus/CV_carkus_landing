@@ -1,4 +1,5 @@
 @inject HttpClient Http
+@inject IConfiguration Config
 @using System.Text.Json
 
 <section id="work">
@@ -63,7 +64,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/workitems.json", opts);
+            var loaded = await Http.GetFromJsonAsync<WorkItem[]>($"{Config["DataRepo"]}workitems.json", opts);
             if (loaded is { Length: > 0 })
                 _rows = BuildRows(loaded);
         }

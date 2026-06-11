@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem c:\\\\_work -Directory | Where-Object { $_.Name -match \"carkus\" })",
+      "WebFetch(domain:upload.wikimedia.org)",
+      "Bash(git -C \"c:\\\\_work\\\\CV_carkus_landing\" status --short)"
+    ]
+  }
+}
