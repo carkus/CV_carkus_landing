@@ -19,7 +19,7 @@
                         var item = row.Items[idx];
                         var itemCss = ItemClass(row, idx);
                         <div class="@itemCss">
-                            <img src="@item.ImageUrl" alt="@item.ImageAlt" />
+                            <img src="@item.ImageUrl" alt="@item.ImageAlt" style="@(item.ImagePosition is not null ? $"object-position:{item.ImagePosition}" : "")" />
                             <div class="work-item-info">
                                 <p class="work-item-desc">@item.Description</p>
                                 <div class="work-item-title">@item.Title</div>
@@ -38,6 +38,10 @@
                                         <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="work-item-link">@link.Label</a>
                                     }
                                 </div>
+                            }
+                            @if (item.Credit is not null)
+                            {
+                                <a href="@item.Credit.Url" target="_blank" rel="noopener noreferrer" class="work-item-credit">Image © @item.Credit.Name</a>
                             }
                         </div>
                     }
@@ -59,7 +63,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("data/workitems.json", opts);
+            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/workitems.json", opts);
             if (loaded is { Length: > 0 })
                 _rows = BuildRows(loaded);
         }

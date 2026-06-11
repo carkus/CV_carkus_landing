@@ -59,7 +59,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("data/workitems.json", opts);
+            var loaded = await Http.GetFromJsonAsync<WorkItem[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/workitems.json", opts);
             var featured = loaded?.Where(i => i.Featured).ToArray();
             if (featured is { Length: > 0 })
                 _items = featured;
@@ -87,7 +87,7 @@
 
     private static readonly WorkItem[] Fallback =
     [
-        new("ZOME — Cross-platform product suite",
+        new("ZOME — Spatial Messenger",
             ["Flutter", "Swift", "Kotlin", "visionOS"],
             "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=600&q=80",
             "ZOME platform",

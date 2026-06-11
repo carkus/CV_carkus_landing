@@ -43,7 +43,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<Entry[]>("data/timeline.json", opts);
+            var loaded = await Http.GetFromJsonAsync<Entry[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/timeline.json", opts);
             if (loaded is { Length: > 0 })
                 _entries = loaded;
         }

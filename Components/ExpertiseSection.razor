@@ -42,7 +42,7 @@
         try
         {
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var loaded = await Http.GetFromJsonAsync<Panel[]>("data/expertise.json", opts);
+            var loaded = await Http.GetFromJsonAsync<Panel[]>("https://raw.githubusercontent.com/carkus/carkus-data/main/expertise.json", opts);
             if (loaded is { Length: > 0 })
             {
                 _panels = loaded;

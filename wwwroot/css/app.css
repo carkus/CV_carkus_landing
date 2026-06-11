@@ -181,6 +181,7 @@ section { padding: 7rem 0; }
 .section-eyebrow::before { content: ''; display: block; width: 1.8rem; height: 1px; background: var(--accent2); }
 .section-heading { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 3.5vw, 3.4rem); line-height: 1.1; color: var(--chalk); margin-bottom: 1.2rem; }
 .section-sub { font-size: 0.95rem; line-height: 1.75; color: var(--mist); max-width: 52ch; margin-bottom: 3.5rem; }
+.section-intro { font-family: var(--serif); font-weight: 300; font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.6; color: var(--chalk); max-width: 62ch; margin-bottom: 1.4rem; }
 
 /* ── ABOUT ───────────────────────────────────────────────────── */
 #about { background: var(--navy); border-top: 1px solid var(--slate); }
@@ -250,8 +251,10 @@ section { padding: 7rem 0; }
 .work-tag { font-size: 0.58rem; color: var(--accent2); background: rgba(10,13,20,0.45); border: 1px solid rgba(90,138,238,0.2); padding: 0.18rem 0.45rem; }
 .work-item-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--chalk); margin-top: 0.3rem; margin-bottom: 0.5rem; text-shadow: 0 1px 10px rgba(0,0,0,0.95); }
 .work-item-links { position: absolute; top: 1.4rem; left: 1.4rem; display: flex; gap: 0.6rem; flex-wrap: wrap; z-index: 2; }
-.work-item-link { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; border: 1px solid var(--steel); padding: 0.25rem 0.65rem; background: rgba(13,21,38,0.3); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: color 0.2s, border-color 0.2s; }
+.work-item-link { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chalk); text-decoration: none; border: 1px solid var(--steel); padding: 0.25rem 0.65rem; background: rgba(13,21,38,0.3); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: color 0.2s, border-color 0.2s; }
 .work-item-link:hover { color: var(--chalk); border-color: var(--accent2); }
+.work-item-credit { position: absolute; bottom: 0.3rem; right: 0.4rem; z-index: 2; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--mist); text-decoration: none; transition: color 0.2s; }
+.work-item:hover .work-item-credit { color: var(--chalk); }
 
 /* ── EXPERTISE ───────────────────────────────────────────────── */
 #expertise { background: var(--ink); border-top: 1px solid var(--slate); padding-bottom: 0; }

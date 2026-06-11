@@ -1,10 +1,10 @@
 [
   {
-    "title": "ZOME — Cross-platform product suite",
+    "title": "ZOME — Spatial Messenger",
     "tags": ["Flutter", "Swift", "Kotlin", "visionOS"],
-    "imageUrl": "https://images.unsplash.com/photo-1759661990336-51bd4b951fea?w=900&q=80",
+    "imageUrl": "img/ZOME_branding.png",
     "imageAlt": "ZOME platform",
-    "description": "End-to-end product suite spanning iOS, Android, and Apple Vision Pro — built with Flutter and native platform SDKs.",
+    "description": "ZOME is a spatial platform and messenger where you can plant your messages anywhere in the world, at any location and even points in time.",
     "featured": true,
     "links": [
       { "label": "App Store ↗", "url": "https://itunes.apple.com/us/app/zome/id1382123356?ls=1&mt=8" },
@@ -13,18 +13,22 @@
   },
   {
     "title": "JobFit™ — AI Job Match Analyser",
-    "tags": ["Blazor", "Claude API", "C#"],
-    "imageUrl": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80",
-    "imageAlt": "JobFit career matching",
+    "tags": ["TypeScript", ".NET", "Claude API", "Gemini API"],
+    "imageUrl": "https://images.unsplash.com/photo-1686771416282-3888ddaf249b?w=600&q=80",
+    "imageAlt": "Job interview handshake",
     "description": "AI-powered tool that scores a CV against a job description, surfaces skill gaps, and drafts a tailored cover letter — built with Blazor and the Claude API.",
     "featured": false,
-    "links": []
+    "links": [
+      { "label": "Open JobFit ↗", "url": "https://jobfit.carkus.com" }
+    ],
+    "credit": { "name": "Mina Rad", "url": "https://unsplash.com/@miinrad" }
   },
   {
     "title": "PDF Form Builder",
     "tags": ["Blazor", "PDF Generation"],
-    "imageUrl": "https://images.unsplash.com/photo-1602407294553-6ac9170b3ed0?w=600&q=80",
-    "imageAlt": "CV Builder",
+    "imageUrl": "img/pdf_form.png",
+    "imageAlt": "PDF Form Builder",
+    "imagePosition": "calc(50% - 50px) center",
     "description": "A browser-based drag-and-drop editor for building and exporting PDF forms.",
     "featured": true,
     "links": [
@@ -34,8 +38,8 @@
   {
     "title": "Moot — AI Conversation & Debate",
     "tags": ["Blazor", "Claude API", "Gemini API"],
-    "imageUrl": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
-    "imageAlt": "Moot AI conversation",
+    "imageUrl": "img/moot_robotdebate.png",
+    "imageAlt": "Moot — AI debate",
     "description": "Personality-driven AI platform with one-on-one chat, confidant reflection, and structured multi-participant debate — built with Blazor and the Claude and Gemini APIs.",
     "featured": false,
     "links": [
@@ -45,8 +49,8 @@
   {
     "title": "Spatial UI Components",
     "tags": ["visionOS", "RealityKit"],
-    "imageUrl": "https://images.unsplash.com/photo-1713445289643-fa1902dd9a03?w=600&q=80",
-    "imageAlt": "visionOS spatial",
+    "imageUrl": "img/spatial_architect.png",
+    "imageAlt": "Spatial UI Components",
     "description": "A library of reusable spatial UI components for Apple Vision Pro using RealityKit and SwiftUI.",
     "featured": false,
     "links": []
