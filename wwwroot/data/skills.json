@@ -3,7 +3,7 @@
   { "name": "Swift / SwiftUI",     "cat": "iOS",          "icon": "devicon-swift-plain colored",       "pct": 92 },
   { "name": "visionOS",            "cat": "Spatial",      "icon": "devicon-apple-plain",               "pct": 90 },
   { "name": "Blazor",              "cat": "Web",          "icon": "devicon-blazor-plain colored",      "pct": 90 },
-  { "name": "Claude API",          "cat": "AI",           "icon": "img/claude-ai.svg",                 "pct": 88 },
+  { "name": "Claude API",          "cat": "AI",           "icon": "◆",                                 "pct": 88 },
   { "name": "React",               "cat": "Web",          "icon": "devicon-react-original colored",    "pct": 86 },
   { "name": "C#",                  "cat": "Language",     "icon": "devicon-csharp-plain colored",      "pct": 86 },
   { "name": "TypeScript",          "cat": "Language",     "icon": "devicon-typescript-plain colored",  "pct": 82 },
