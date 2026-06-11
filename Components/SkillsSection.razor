@@ -24,6 +24,10 @@
                                     {
                                         <i class="@s.Icon"></i>
                                     }
+                                    else if (s.Icon.StartsWith("img/"))
+                                    {
+                                        <img src="@s.Icon" alt="" />
+                                    }
                                     else
                                     {
                                         <span>@s.Icon</span>
